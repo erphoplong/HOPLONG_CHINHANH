@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+index
+<img ng-src="{{image_source}}">
+<input type="file" id="trigger" class="ng-hide" onchange="angular.element(this).scope().setFile(this)" accept="image/*">
+
+<script>
+ $scope.setFile = function(element) {
+  $scope.currentFile = element.files[0];
+   var reader = new FileReader();
+
+  reader.onload = function(event) {
+    $scope.image_source = event.target.result
+    $scope.$apply()
+
+  }
+  // when the file is read it triggers the onload event above.
+  reader.readAsDataURL(element.files[0]);
+}</script>
